@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">litenews</string>
+
+    <string name="tituloDePost1">Desvendando os Mitos da Programação</string>
+    <string name="tituloDePost2">As 5 Linguagens Essenciais para Desenvolvedores</string>
+    <string name="tituloDePost3">Inteligência Artificial: O Futuro da Codificação</string>
+    <string name="tituloDePost4">Refatoração de Código: Um Guia Prático</string>
+    <string name="tituloDePost5">Segurança em Aplicações Web: Boas Práticas</string>
+
+    <string name="conteudoDePost1">Muitos desenvolvedores iniciantes se deparam com informações errôneas. Este post desmistifica conceitos comuns e mostra o caminho para um aprendizado sólido.</string>
+    <string name="conteudoDePost2">Escolher a linguagem certa pode ser um desafio. Exploramos Python, JavaScript, Java, C# e Go, destacando seus pontos fortes e casos de uso.</string>
+    <string name="conteudoDePost3">A IA está revolucionando o desenvolvimento de software, desde a automação de testes até a geração de código. Veja como se preparar para essa transformação.</string>
+    <string name="conteudoDePost4">Manter um código limpo e eficiente é crucial. Este guia detalha técnicas de refatoração para melhorar a legibilidade, manutenção e performance do seu projeto.</string>
+    <string name="conteudoDePost5">A segurança não é um extra, é uma necessidade. Abordamos vulnerabilidades comuns e as melhores práticas para proteger suas aplicações contra ataques.</string>
+
+    <string name="autorDePost1">Ana Paula Costa</string>
+    <string name="autorDePost2">Bruno Lima</string>
+    <string name="autorDePost3">Carla Mendes</string>
+    <string name="autorDePost4">Daniel Oliveira</string>
+    <string name="autorDePost5">Eduarda Santos</string>
 </resources>
