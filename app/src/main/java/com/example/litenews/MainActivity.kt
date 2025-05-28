@@ -10,11 +10,13 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -107,6 +109,9 @@ fun PostCard(post: Post, modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(16.dp),
                 style = MaterialTheme.typography.bodySmall
             )
+            Button(onClick = { /*TODO*/ }, modifier = Modifier.offset(x = 250.dp)) {
+                Text(text = "Ler mais")
+            }
         }
     }
 }
