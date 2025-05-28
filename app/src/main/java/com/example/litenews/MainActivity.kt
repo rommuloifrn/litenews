@@ -83,6 +83,16 @@ fun LiteNewsApp() {
                 R.string.tituloDePost3,
                 R.string.conteudoDePost3
             ),
+            Post(
+                R.string.autorDePost4,
+                R.string.tituloDePost4,
+                R.string.conteudoDePost4
+            ),
+            Post(
+                R.string.autorDePost5,
+                R.string.tituloDePost5,
+                R.string.conteudoDePost5
+            ),
         ))
     }
 }
