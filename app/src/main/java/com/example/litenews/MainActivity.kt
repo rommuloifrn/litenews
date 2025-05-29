@@ -22,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -108,18 +109,18 @@ fun GreetingPreview() {
 @Composable
 fun PostCard(post: Post, modifier: Modifier = Modifier) {
     Card(modifier = modifier) {
-        Column {
+        Column (modifier = Modifier.padding(10.dp)) {
             Text(
                 text = LocalContext.current.getString(post.tituloResourceId),
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(vertical = 5.dp),
                 style = MaterialTheme.typography.headlineSmall
             )
             Text(
                 text = LocalContext.current.getString(post.autorResourceId),
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(vertical = 5.dp),
                 style = MaterialTheme.typography.bodySmall
             )
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.offset(x = 250.dp)) {
+            Button(onClick = { /*TODO*/ }, modifier = Modifier.align(alignment = Alignment.End)) {
                 Text(text = "Ler mais")
             }
         }
