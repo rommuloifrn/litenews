@@ -28,6 +28,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.litenews.model.Post
 import com.example.litenews.ui.theme.LitenewsTheme
 import javax.sql.DataSource
@@ -36,11 +40,19 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-            LitenewsTheme {
-                // A surface container using the 'background' color from the theme
-                LiteNewsApp()
-            }
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = "MainScreen", builder = {
+                composable("MainScreen") {
+                    MainScreen(navController)
+                }
+                composable("DetailScreen") {
+                    DetailScreen()
+                }
+            })
+            //LitenewsTheme {
+            //    // A surface container using the 'background' color from the theme
+            //    LiteNewsApp()
+            //}
         }
     }
 }
@@ -53,27 +65,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Composable
-fun LiteNewsApp() {
-    val layoutDirection = LocalLayoutDirection.current
-    Surface(
-        Modifier
-            .fillMaxSize()
-            .statusBarsPadding()
-            .padding(
-                start = WindowInsets.safeDrawing
-                    .asPaddingValues()
-                    .calculateStartPadding(layoutDirection),
-                end = WindowInsets.safeDrawing
-                    .asPaddingValues()
-                    .calculateEndPadding(layoutDirection),
-            ),
-    ) {
-        MainScreen()
-    }
-}
-
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -82,7 +73,7 @@ fun GreetingPreview() {
     }
 }
 @Composable
-fun PostCard(post: Post, modifier: Modifier = Modifier) {
+fun PostCard(post: Post, modifier: Modifier = Modifier, navController: NavController) {
     Card(modifier = modifier) {
         Column (modifier = Modifier.padding(10.dp)) {
             Text(
@@ -95,7 +86,12 @@ fun PostCard(post: Post, modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(vertical = 5.dp),
                 style = MaterialTheme.typography.bodySmall
             )
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.align(alignment = Alignment.End)) {
+            Button(
+                onClick = {
+                          navController.navigate("DetailScreen")
+                },
+                modifier = Modifier.align(alignment = Alignment.End
+            )) {
                 Text(text = "Ler mais")
             }
         }
@@ -103,10 +99,10 @@ fun PostCard(post: Post, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun PostList(postList: List<Post>, modifier: Modifier = Modifier) {
+fun PostList(postList: List<Post>, modifier: Modifier = Modifier, navController: NavController) {
     LazyColumn(modifier = modifier) {
         items(postList) { post ->
-            PostCard(post = post, modifier = Modifier.padding(8.dp))
+            PostCard(post = post, modifier = Modifier.padding(8.dp), navController = navController)
 
         }
     }

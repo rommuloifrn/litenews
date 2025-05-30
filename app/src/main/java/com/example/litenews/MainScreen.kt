@@ -1,11 +1,12 @@
 package com.example.litenews
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 import com.example.litenews.model.Post
 
 
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavController) {
     val posts = listOf(
         Post("titulo!", "autor!", "conteudo!!!!"),
         Post("titulo!", "autor!", "conteudo!!!!"),
@@ -17,5 +18,5 @@ fun MainScreen() {
         Post("titulo!", "autor!", "conteudo!!!!"),
     )
 
-    PostList(postList = posts)
+    PostList(postList = posts, navController = navController)
 }
