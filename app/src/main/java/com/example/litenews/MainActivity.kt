@@ -26,8 +26,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.litenews.model.Post
 import com.example.litenews.ui.theme.LitenewsTheme
 import javax.sql.DataSource
@@ -38,18 +41,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             LitenewsTheme {
                 // A surface container using the 'background' color from the theme
-                LiteNewsApp()
+                Navigation()
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-            text = "Hello $name!",
-            modifier = modifier
-    )
 }
 
 @Composable
@@ -68,77 +63,6 @@ fun LiteNewsApp() {
                     .calculateEndPadding(layoutDirection),
             ),
     ) {
-        PostList(postList = listOf(
-            Post(
-                R.string.autorDePost1,
-                R.string.tituloDePost1,
-                R.string.conteudoDePost1
-            ),
-            Post(
-                R.string.autorDePost2,
-                R.string.tituloDePost2,
-                R.string.conteudoDePost2
-            ),
-            Post(
-                R.string.autorDePost3,
-                R.string.tituloDePost3,
-                R.string.conteudoDePost3
-            ),
-            Post(
-                R.string.autorDePost4,
-                R.string.tituloDePost4,
-                R.string.conteudoDePost4
-            ),
-            Post(
-                R.string.autorDePost5,
-                R.string.tituloDePost5,
-                R.string.conteudoDePost5
-            ),
-        ))
-    }
-}
 
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LitenewsTheme {
-        Greeting("Android")
-    }
-}
-@Composable
-fun PostCard(post: Post, modifier: Modifier = Modifier) {
-    Card(modifier = modifier) {
-        Column (modifier = Modifier.padding(10.dp)) {
-            Text(
-                text = LocalContext.current.getString(post.tituloResourceId),
-                modifier = Modifier.padding(vertical = 5.dp),
-                style = MaterialTheme.typography.headlineSmall
-            )
-            Text(
-                text = LocalContext.current.getString(post.autorResourceId),
-                modifier = Modifier.padding(vertical = 5.dp),
-                style = MaterialTheme.typography.bodySmall
-            )
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.align(alignment = Alignment.End)) {
-                Text(text = "Ler mais")
-            }
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun PostCardPreview() {
-    PostCard(Post(R.string.autorDePost1, R.string.tituloDePost1, R.string.conteudoDePost1))
-}
-
-@Composable
-fun PostList(postList: List<Post>, modifier: Modifier = Modifier) {
-    LazyColumn(modifier = modifier) {
-        items(postList) { post ->
-            PostCard(post = post, modifier = Modifier.padding(8.dp))
-
-        }
     }
 }
