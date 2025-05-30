@@ -36,6 +36,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             LitenewsTheme {
                 // A surface container using the 'background' color from the theme
                 LiteNewsApp()
@@ -68,33 +69,7 @@ fun LiteNewsApp() {
                     .calculateEndPadding(layoutDirection),
             ),
     ) {
-        PostList(postList = listOf(
-            Post(
-                R.string.autorDePost1,
-                R.string.tituloDePost1,
-                R.string.conteudoDePost1
-            ),
-            Post(
-                R.string.autorDePost2,
-                R.string.tituloDePost2,
-                R.string.conteudoDePost2
-            ),
-            Post(
-                R.string.autorDePost3,
-                R.string.tituloDePost3,
-                R.string.conteudoDePost3
-            ),
-            Post(
-                R.string.autorDePost4,
-                R.string.tituloDePost4,
-                R.string.conteudoDePost4
-            ),
-            Post(
-                R.string.autorDePost5,
-                R.string.tituloDePost5,
-                R.string.conteudoDePost5
-            ),
-        ))
+        MainScreen()
     }
 }
 
@@ -111,12 +86,12 @@ fun PostCard(post: Post, modifier: Modifier = Modifier) {
     Card(modifier = modifier) {
         Column (modifier = Modifier.padding(10.dp)) {
             Text(
-                text = LocalContext.current.getString(post.tituloResourceId),
+                text = post.titulo,
                 modifier = Modifier.padding(vertical = 5.dp),
                 style = MaterialTheme.typography.headlineSmall
             )
             Text(
-                text = LocalContext.current.getString(post.autorResourceId),
+                text = post.autor,
                 modifier = Modifier.padding(vertical = 5.dp),
                 style = MaterialTheme.typography.bodySmall
             )
@@ -125,12 +100,6 @@ fun PostCard(post: Post, modifier: Modifier = Modifier) {
             }
         }
     }
-}
-
-@Preview
-@Composable
-private fun PostCardPreview() {
-    PostCard(Post(R.string.autorDePost1, R.string.tituloDePost1, R.string.conteudoDePost1))
 }
 
 @Composable
