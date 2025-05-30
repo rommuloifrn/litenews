@@ -46,13 +46,9 @@ class MainActivity : ComponentActivity() {
                     MainScreen(navController)
                 }
                 composable("DetailScreen") {
-                    DetailScreen()
+                    DetailScreen(navController)
                 }
             })
-            //LitenewsTheme {
-            //    // A surface container using the 'background' color from the theme
-            //    LiteNewsApp()
-            //}
         }
     }
 }
