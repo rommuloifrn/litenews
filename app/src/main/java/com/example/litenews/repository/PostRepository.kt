@@ -19,7 +19,7 @@ class PostRepository {
             .url(url)
             .build()
 
-        client.newCall(request).execute().use { response: Response ->
+        client.newCall(request).execute().use { response: Response -> // https://stackoverflow.com/questions/26969800/try-with-resources-in-kotlin
             return response.body!!.string()
         }
     }

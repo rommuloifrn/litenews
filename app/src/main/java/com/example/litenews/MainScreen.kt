@@ -13,11 +13,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.activity.viewModels
 import com.example.litenews.model.Post
 
 
 @Composable
 fun MainScreen(navController: NavController) {
+
+    val viewModel: MainScreenViewModel by viewModels()
+
+    viewModel.uiState.collect {
+
+    }
+
     val posts = listOf(
         Post("titulo!", "autor!", "conteudo!!!!"),
         Post("titulo!", "autor!", "conteudo!!!!"),

@@ -33,6 +33,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.litenews.model.Post
+import com.example.litenews.repository.PostRepository
 import com.example.litenews.ui.theme.LitenewsTheme
 import javax.sql.DataSource
 
