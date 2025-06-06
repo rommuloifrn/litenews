@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -26,7 +27,8 @@ import kotlinx.coroutines.delay
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "litenews", 
+            text = "litenews",
+            fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.headlineLarge
         )
         Text(text = "Um client de leitura para o fórum Tabnews")
