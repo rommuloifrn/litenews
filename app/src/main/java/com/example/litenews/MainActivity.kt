@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val viewModel: MainScreenViewModel = MainScreenViewModel()
+        val svm = SplashScreenViewModel()
         val posts = viewModel.uiState.value.posts
 
         setContent {
@@ -59,7 +60,7 @@ class MainActivity : ComponentActivity() {
                     DetailScreen(navController)
                 }
                 composable("SplashScreen") {
-                    SplashScreen(navController)
+                    SplashScreen(navController, svm)
                 }
             })
         }

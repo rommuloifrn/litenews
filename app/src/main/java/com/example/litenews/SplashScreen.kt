@@ -17,7 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navControler: NavController) {
+ fun SplashScreen(navControler: NavController, viewModel: SplashScreenViewModel) {
     Column(
         modifier = Modifier
             .fillMaxHeight(1f)
@@ -25,12 +25,19 @@ fun SplashScreen(navControler: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = "litenews", style = MaterialTheme.typography.headlineLarge)
-        Button(onClick = {
-            navControler.navigate("MainScreen")
-        }) {
+        Text(
+            text = "litenews", 
+            style = MaterialTheme.typography.headlineLarge
+        )
+        Text(text = "Um client de leitura para o fórum Tabnews")
+        Button(onClick = { navControler.navigate("MainScreen") }) {
             Text(text = "Ver posts")
         }
+
     }
+
+    //viewModel.wait {
+    //    navControler.navigate("MainScreen")
+    //}
 
 }
