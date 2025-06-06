@@ -14,19 +14,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.activity.viewModels
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import com.example.litenews.model.Post
+import com.example.litenews.repository.PostRepository
 
 
 @Composable
-fun MainScreen(navController: NavController) {
+fun MainScreen(navController: NavController, a: String, viewModel: MainScreenViewModel) {
 
-    val viewModel: MainScreenViewModel by viewModels()
-
-    viewModel.uiState.collect {
-
-    }
+    val state by viewModel.uiState.collectAsState()
+    viewModel.getPosts()
 
     val posts = listOf(
+        Post(state.posts,"",""),
         Post("titulo!", "autor!", "conteudo!!!!"),
         Post("titulo!", "autor!", "conteudo!!!!"),
         Post("titulo!", "autor!", "conteudo!!!!"),
@@ -36,8 +37,16 @@ fun MainScreen(navController: NavController) {
         Post("titulo!", "autor!", "conteudo!!!!"),
         Post("titulo!", "autor!", "conteudo!!!!"),
     )
-
-    PostList(postList = posts, navController = navController)
+    Column {
+        Button(
+            onClick = {
+                viewModel.getPosts()
+            },
+        ) {
+            Text(text = "Carregar")
+        }
+        PostList(postList = posts, navController = navController)
+    }
 }
 
 @Composable

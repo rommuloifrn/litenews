@@ -4,6 +4,7 @@ import Datasource
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
@@ -28,6 +29,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -35,16 +39,21 @@ import androidx.navigation.compose.rememberNavController
 import com.example.litenews.model.Post
 import com.example.litenews.repository.PostRepository
 import com.example.litenews.ui.theme.LitenewsTheme
+import kotlinx.coroutines.launch
 import javax.sql.DataSource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val viewModel: MainScreenViewModel = MainScreenViewModel()
+        val posts = viewModel.uiState.value.posts
+
         setContent {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "MainScreen", builder = {
                 composable("MainScreen") {
-                    MainScreen(navController)
+                    MainScreen(navController, posts, viewModel, )
                 }
                 composable("DetailScreen") {
                     DetailScreen(navController)

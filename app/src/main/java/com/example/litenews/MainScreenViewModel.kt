@@ -14,15 +14,15 @@ data class PostsUiState(
     val posts: String = "posts ainda nao carregados"
 )
 
-class MainScreenViewModel (private val pr: PostRepository): ViewModel() {
-
+class MainScreenViewModel (): ViewModel() {
+    val pr: PostRepository = PostRepository()
     private val _uiState = MutableStateFlow(PostsUiState())
     val uiState: StateFlow<PostsUiState> = _uiState.asStateFlow()
     fun getPosts() {
-
         viewModelScope.launch (Dispatchers.IO) {
             _uiState.update {currentState ->
-                currentState.copy(posts = pr.getPosts())
+                currentState.copy(posts = "nhaaa")//pr.getPosts())
+
             } // assincrono
         } // viewmodel (https://developer.android.com/topic/libraries/architecture/viewmodel)
     }
