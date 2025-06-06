@@ -51,12 +51,15 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "MainScreen", builder = {
+            NavHost(navController = navController, startDestination = "SplashScreen", builder = {
                 composable("MainScreen") {
                     MainScreen(navController, posts, viewModel, )
                 }
                 composable("DetailScreen") {
                     DetailScreen(navController)
+                }
+                composable("SplashScreen") {
+                    SplashScreen(navController)
                 }
             })
         }
