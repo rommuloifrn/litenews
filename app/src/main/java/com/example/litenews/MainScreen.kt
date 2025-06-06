@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.litenews.model.Post
@@ -24,10 +26,8 @@ import com.example.litenews.repository.PostRepository
 fun MainScreen(navController: NavController, a: String, viewModel: MainScreenViewModel) {
 
     val state by viewModel.uiState.collectAsState()
-    viewModel.getPosts()
 
     val posts = listOf(
-        Post(state.posts,"",""),
         Post("titulo!", "autor!", "conteudo!!!!"),
         Post("titulo!", "autor!", "conteudo!!!!"),
         Post("titulo!", "autor!", "conteudo!!!!"),
@@ -37,7 +37,10 @@ fun MainScreen(navController: NavController, a: String, viewModel: MainScreenVie
         Post("titulo!", "autor!", "conteudo!!!!"),
         Post("titulo!", "autor!", "conteudo!!!!"),
     )
-    Column {
+
+    Column (modifier = Modifier.padding(8.dp)) {
+        Text("litenews", style = MaterialTheme.typography.headlineLarge)
+        Text(state.posts)
         Button(
             onClick = {
                 viewModel.getPosts()
@@ -50,9 +53,19 @@ fun MainScreen(navController: NavController, a: String, viewModel: MainScreenVie
 }
 
 @Composable
+fun PostList(postList: List<Post>, modifier: Modifier = Modifier.fillMaxWidth(1f), navController: NavController) {
+    LazyColumn(modifier = modifier) {
+        items(postList) { post ->
+            PostCard(post = post, modifier = Modifier.padding(vertical = 8.dp), navController = navController)
+
+        }
+    }
+}
+
+@Composable
 fun PostCard(post: Post, modifier: Modifier = Modifier, navController: NavController) {
-    Card(modifier = modifier) {
-        Column (modifier = Modifier.padding(10.dp)) {
+    Card(modifier = modifier.fillMaxWidth(1f)) {
+        Column (modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp).fillMaxWidth(1f)) {
             Text(
                 text = post.titulo,
                 modifier = Modifier.padding(vertical = 5.dp),
@@ -71,16 +84,6 @@ fun PostCard(post: Post, modifier: Modifier = Modifier, navController: NavContro
                 )) {
                 Text(text = "Ler mais")
             }
-        }
-    }
-}
-
-@Composable
-fun PostList(postList: List<Post>, modifier: Modifier = Modifier, navController: NavController) {
-    LazyColumn(modifier = modifier) {
-        items(postList) { post ->
-            PostCard(post = post, modifier = Modifier.padding(8.dp), navController = navController)
-
         }
     }
 }

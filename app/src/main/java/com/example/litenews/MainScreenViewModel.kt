@@ -15,13 +15,14 @@ data class PostsUiState(
 )
 
 class MainScreenViewModel (): ViewModel() {
-    val pr: PostRepository = PostRepository()
+
     private val _uiState = MutableStateFlow(PostsUiState())
     val uiState: StateFlow<PostsUiState> = _uiState.asStateFlow()
     fun getPosts() {
-        viewModelScope.launch (Dispatchers.IO) {
+        viewModelScope.launch {
+            val pr: PostRepository = PostRepository()
             _uiState.update {currentState ->
-                currentState.copy(posts = "nhaaa")//pr.getPosts())
+                currentState.copy(posts = "Mudança de estado")//pr.getPosts())
 
             } // assincrono
         } // viewmodel (https://developer.android.com/topic/libraries/architecture/viewmodel)
